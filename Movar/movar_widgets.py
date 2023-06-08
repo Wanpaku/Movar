@@ -198,10 +198,17 @@ class GenericMenu(tk.Menu):
         """Додавання меню "Про Мовар"."""
         about_menu = tk.Menu(self, tearoff=False, **self.bg_style)
         menu.add_command(label=self.about_menu_label,
-                        command=self._show_about)
+            command=self._show_about)
         menu.add_command(label=self.manual_label,
-                        command=self._show_manual_text
-                        )
+            command=self._show_manual_text
+            )
+        menu.add_command(label=self.website_label,
+            command=self._open_projects_website
+            )
+            
+    def _open_projects_website(self, *_):
+        """Перейти на вебсайт проєкту."""
+        webbrowser.open_new("https://github.com/Wanpaku/Movar.git")
             
     def _event(self, sequence):
         """Проста функція-обгортка."""
@@ -331,6 +338,8 @@ class GenericMenu(tk.Menu):
             translations[selected_language]['Manual']
         self.manual_text = \
             translations[selected_language]['Manual text']
+        self.website_label = \
+            translations[selected_language]['Web site']
             
     def _dictionaries_settings_window(self, *_):
         """Відкриття вікна налаштування розташування словників."""
@@ -956,15 +965,15 @@ class GenericMenu(tk.Menu):
                 for voice in voices:
                     engine.setProperty('voice', voice.id)
                     if voice.id not in self.tts_voice_options:
-                        self.tts_voice_options.append(voice.id.lower())
-                engine.runAndWait()
-                self.tts_voice_options.sort()
+                        self.tts_voice_options.append(voice.id)
+                self.tts_voice_options.sort(key=str.lower)
         else:
             self.tts_voice_options = ["None"]
             self.tts_voice_option_menu.set(self.tts_voice_options[0])
-                
+            
         self.tts_voice_option_menu.configure(
-                    values=self.tts_voice_options)
+                    values=self.tts_voice_options,
+                    )
         
     def _choose_default_tts_voice(self):
         """Встановлення поточного голосу для програвача тексту."""
@@ -1118,6 +1127,36 @@ class WindowsMainMenu(GenericMenu):
             label=self.add_quit_menu_label,
             command=self._event('<<FileQuit>>'),
             )
+            
+    def _set_voices_options(self, *_):
+        """Встановлення переліку доступних голосів
+        для читання тексту."""
+        self.tts_voice_option_menu = ttk.Combobox(self.frame_3,
+                                textvariable=self.tts_voice_var,
+                                state='readonly',
+                                style='NewCombobox.TCombobox',
+                                )
+        self.tts_voice_option_menu.grid(row=4, column=0, sticky='nsew')
+        
+        if self.settings['tts player'].get() != "None":
+            if self.settings['tts player'].get() == 'pyttsx3':
+                import pyttsx3
+                engine = pyttsx3.init()
+                voices = engine.getProperty('voices')
+                for voice in voices:
+                    engine.setProperty('voice', voice.id)
+                    if voice.id not in self.tts_voice_options:
+                        self.tts_voice_options.append(voice.id)
+                self.tts_voice_options.sort(key=str.lower)
+        else:
+            self.tts_voice_options = ["None"]
+            self.tts_voice_option_menu.set(self.tts_voice_options[0])
+            
+        width = len(max(self.tts_voice_options, key = len))        
+        self.tts_voice_option_menu.configure(
+                    values=self.tts_voice_options,
+                    width=width
+                    )
             
 class LinuxMainMenu(GenericMenu):
     """Клас для головного меню Linux."""
