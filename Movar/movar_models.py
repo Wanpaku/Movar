@@ -52,6 +52,17 @@ class TextSearch(Thread):
         message = language_options[language]\
         ['Dict download mistake'] + filename + '!'
         messagebox.showwarning(title, message)
+        
+    def _show_regex_formula_mistake(self, regex, filename):
+        """Показати помилку при завантаженні."""
+        self.queue.put('Done!')
+        language = SettingsModel.fields['language']['value']
+        language_options = InterfaceLanguage().translation_options
+        title = language_options[language]\
+        ['Regex mistake title']
+        message = language_options[language]\
+        ['Regex mistake'] + filename + '\n' + regex + '!'
+        messagebox.showwarning(title, message)
                    
     def load_dictionaries(self):
         """Завантаження словників."""
@@ -91,16 +102,22 @@ class TextSearch(Thread):
                     index_dict = {}
                     word_filter = self.total_dict[key]\
                         ['Regex filter'].rstrip()
-                    for match in re.finditer(word_filter,
-                        self.total_dict[key]['Main body'], re.M):
-                        word = match.group()
-                        word = word.lower()
-                        if word in index_dict.keys():
-                            new_span = (index_dict[word][0],
-                                match.span()[1])
-                            index_dict[word] = new_span
-                        else:
-                            index_dict[word] = match.span()
+                    try:
+                        for match in re.finditer(word_filter,
+                            self.total_dict[key]['Main body'], re.M):
+                            word = match.group()
+                            word = word.lower()
+                            if word in index_dict.keys():
+                                new_span = (index_dict[word][0],
+                                    match.span()[1])
+                                index_dict[word] = new_span
+                            else:
+                                index_dict[word] = match.span()
+                    except:
+                        self._show_regex_formula_mistake(
+                            regex=word_filter, filename=filename)
+                        return
+                        
                     
                     self.total_dict[key]['Indexes'] = index_dict
 

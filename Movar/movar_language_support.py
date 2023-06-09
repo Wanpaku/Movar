@@ -58,8 +58,8 @@ class InterfaceLanguage:
     "\n"\
     "Гарячі клавіші:\n"\
     "F2 - Відкрити налаштування словників.\n"\
-    "Ctrl+1 (Або 'стрілка вгору') - Гортання груп словників угору.\n"\
-    "Ctrl+2 (Або 'стрілка донизу') - Гортання груп словників донизу.\n"\
+    "Ctrl+1 - Гортання груп словників угору.\n"\
+    "Ctrl+2 - Гортання груп словників донизу.\n"\
     "Ctrl+Q (Linux) - Вихід із програми.\n"\
     
     menu_about_en = "Movar is an application created for offline working with\n"\
@@ -97,8 +97,8 @@ class InterfaceLanguage:
     "\n"\
     "Hot keys:\n"\
     "F2 - Open the dictionary settings.\n"\
-    "Ctrl+1 (Or 'arrow up') - Scrolling dictionaries groups upward.\n"\
-    "Ctrl+2 (Or 'arrow down') - Scrolling dictionaries groups downward.\n"\
+    "Ctrl+1 - Scrolling dictionaries groups upward.\n"\
+    "Ctrl+2 - Scrolling dictionaries groups downward.\n"\
     "Ctrl+Q (Linux) - Exit from the program.\n"\
     
     menu_about_jp = "「Movar」アプリケーションは語彙的な辞書に\n"\
@@ -135,8 +135,8 @@ class InterfaceLanguage:
     "\n"\
     "ホットキー:\n"\
     "F2 - 辞書の設定を開きます。\n"\
-    "Ctrl+1 (又は「上向きの矢」) - 辞書のグループを上向きにスクローリングします。\n"\
-    "Ctrl+2 (又は「下向きの矢」) - 辞書のグループを下向きにスクローリングします。\n"\
+    "Ctrl+1 - 辞書のグループを上向きにスクローリングします。\n"\
+    "Ctrl+2 - 辞書のグループを下向きにスクローリングします。\n"\
     "Ctrl+Q (Linux) - アプリを出ます。\n"\
     
     translation_options = {
@@ -210,6 +210,9 @@ class InterfaceLanguage:
                 'Menu About': menu_about_uk,
                 'Manual': 'Посібник',
                 'Manual text': manual_text_uk,
+                'Web site': "Сторінка проєкту(GitHub)",
+                'Regex mistake': "Помилка у формулі Regex:\n",
+                'Regex mistake title': "Помилка в Regex"
                 },
                 
         'English':
@@ -282,6 +285,9 @@ class InterfaceLanguage:
                 'Menu About': menu_about_en,
                 'Manual': 'Manual',
                 'Manual text': manual_text_en,
+                'Web site': "Project's website(GitHub)",
+                'Regex mistake': "Mistake in Regex formula:\n",
+                'Regex mistake title': "Regex mistake"
                 },
                 
         '日本語':
@@ -354,5 +360,8 @@ class InterfaceLanguage:
                 'Menu About': menu_about_jp,
                 'Manual': '手引き',
                 'Manual text': manual_text_jp,
+                'Web site': "アプリのウェブサイト(GitHub)",
+                'Regex mistake': "「Regex」の式に誤りをしまいました:\n",
+                'Regex mistake title': "「Regex」の誤り"
                 },
         }
