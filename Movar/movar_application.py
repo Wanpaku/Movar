@@ -385,9 +385,6 @@ class Application(tk.Tk):
             self.bind(sequence, callback)
             
         self.bind_all("<ButtonPress-3>", self._display_popup_menu)
-        self.bind_all("<KeyRelease-Up>", self._change_dict_group_key_up)
-        self.bind_all("<KeyRelease-Down>",
-            self._change_dict_group_key_down)
         self.bind_all("<Control-KeyPress-1>",
             self._change_dict_group_key_up)
         self.bind_all("<Control-KeyPress-2>",
@@ -637,8 +634,9 @@ class Application(tk.Tk):
             for dic in self.selected_index.keys():
                 for item in self.selected_index[dic]:
                     clean_item = re.sub(r'\W', '', item)
-                    if clean_item.lower().startswith(key.lower()) \
-                    or item.lower().startswith(key.lower()):
+                    if (clean_item.lower().startswith(key.lower()) \
+                    or item.lower().startswith(key.lower())) \
+                    and item not in data:
                         self.yScroll.grid(row=1, column=1,
                             sticky='ns')
                         self.listbox_menu.grid(row=1, column=0,
