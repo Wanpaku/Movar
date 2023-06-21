@@ -48,9 +48,9 @@ How to use
 Authors
 ========
 
-  -Teg Miles (movarocks2@gmail.com)
-  -A part of the code was taken from this book: ``Alan D. Moore. Python GUI Programming with Tkinter. Second Edition``
-  -The icon was taken from `this place https://www.flaticon.com/free-icon/dictionary_7793703?term=dictionary&page=3&position=77&origin=tag&related_id=7793703`_.
+  - Teg Miles (movarocks2@gmail.com)
+  - A part of the code was taken from this book: ``Alan D. Moore. Python GUI Programming with Tkinter. Second Edition``
+  - The icon was taken from `this place https://www.flaticon.com/free-icon/dictionary_7793703?term=dictionary&page=3&position=77&origin=tag&related_id=7793703`_.
 
 Requirements
 ============
